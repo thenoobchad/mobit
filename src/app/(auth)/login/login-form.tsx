@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChangeEvent, useActionState, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import { login } from "@/actions/auth";
 import { InputField } from "@/components/input";
@@ -64,7 +64,7 @@ export const LoginForm = () => {
         <SubmitButton caption="Login in" />
       </div>
       <p className="text-center text-zinc-600">
-        Don't have an account? <Link href="/register">Register</Link>{" "}
+        Don&apos;t have an account? <Link href="/register">Register</Link>{" "}
       </p>
     </form>
   );
