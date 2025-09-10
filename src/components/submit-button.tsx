@@ -10,8 +10,8 @@ export const SubmitButton = ({ caption, disabled }: SubmitButtonType) => {
   return (
     <button
       type="submit"
-      className={`my-2 h-10 w-full bg-zinc-800 text-sm font-semibold tracking-wider text-white hover:bg-zinc-700`}
-      disabled={isPending}
+      className={"my-2 h-10 w-full bg-zinc-800 text-sm font-semibold tracking-wider text-white hover:bg-zinc-700"}
+      disabled={disabled || isPending}
     >
       {caption}
     </button>
