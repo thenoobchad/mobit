@@ -7,7 +7,6 @@ import { db } from "@/db";
 import { transactions, users } from "@/db/schema";
 import { getCurrentUserById } from "@/lib/currentUser";
 
-
 const paymentSchema = z.object({
   id: z.string(),
   amount: z.string(),
@@ -15,7 +14,6 @@ const paymentSchema = z.object({
 });
 
 export async function makePayment(formData: FormData) {
-
   const { success, data } = paymentSchema.safeParse(
     Object.fromEntries(formData)
   );
@@ -56,65 +54,68 @@ export async function makePayment(formData: FormData) {
   }
 }
 
-
 const InvestmentSchema = z.object({
-    userId: z.string(),
+  userId: z.string(),
   transId: z.string(),
   title: z.string(),
-  amount:z.string()
-})
+  amount: z.string(),
+});
 
 export async function makeInvestment(formData: any) {
-  console.log("AAAAAAAAAAAA")
-  const value = formData.get("amount")
+  console.log("AAAAAAAAAAAA");
+  const value = formData.get("amount");
 
-   console.log(typeof value)
+  console.log(typeof value);
   const parsedData = InvestmentSchema.safeParse({
     userId: formData.get("userId"),
     transId: formData.get("transId"),
     title: formData.get("title"),
-    amount : formData.get("amount")
-  })
+    amount: formData.get("amount"),
+  });
 
-  
- 
-console.log("BBBBBBBBBBBB")
-const { data, error } = parsedData
-   
+  console.log("BBBBBBBBBBBB");
+  const { data, error } = parsedData;
+
   if (error) {
     return {
       success: false,
-      message: error.message
-    }
+      message: error.message,
+    };
   }
 
-  console.log("CCCCCCCCCC")
-  
+  console.log("CCCCCCCCCC");
 
-  const { userId, transId: id, amount, title } = data
-  
-    const [user] = await db.select().from(users).where(eq(users.id, userId))
-  
-  const currentTransactions = user.transactions || []
+  const { userId, transId: id, amount, title } = data;
 
-  const [existingTransaction] = currentTransactions.map((transact) => transact.id === id)
+  const [user] = await db.select().from(users).where(eq(users.id, userId));
+
+  const currentTransactions = user.transactions || [];
+
+  const [existingTransaction] = currentTransactions.map(
+    (transact) => transact.id === id
+  );
 
   if (existingTransaction) {
     return {
       success: false,
-      message:"Duplicate investment. Choose another Plan."
-    }
+      message: "Duplicate investment. Choose another Plan.",
+    };
   }
-  const parsedvalue = Number(amount)
-  const updatedWallet = user.wallet ? user.wallet  - parsedvalue : null
+  const parsedvalue = Number(amount);
+  const updatedWallet = user.wallet ? user.wallet - parsedvalue : null;
 
-  const updatedTransactions = [...currentTransactions, { id, title, amount: Number(amount) }] 
+  const updatedTransactions = [
+    ...currentTransactions,
+    { id, title, amount: Number(amount) },
+  ];
 
+  await db
+    .update(users)
+    .set({ transactions: updatedTransactions, wallet: updatedWallet })
+    .where(eq(users.id, userId))
+    .returning();
 
-   await db.update(users).set({ transactions: updatedTransactions, wallet: updatedWallet }).where(eq(users.id, userId)).returning()
-  
+  console.log("this is it transactions", user.transactions);
 
-  console.log("this is it transactions", user.transactions)
-  
-  console.log("this is wallet",user.wallet)
+  console.log("this is wallet", user.wallet);
 }

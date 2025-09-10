@@ -15,9 +15,9 @@ export const getDatabaseUsers = async () => {
 };
 
 export const getPackages = async () => {
-  const allPackages = await db.select().from(packages) ;
+  const allPackages = await db.select().from(packages);
 
-  return allPackages ?? []
+  return allPackages ?? [];
 };
 
 export const getTransactions = async () => {

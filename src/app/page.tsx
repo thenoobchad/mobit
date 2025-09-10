@@ -1,10 +1,10 @@
-import { getPackages } from "@/lib/databaseQueries";
 import Link from "next/link";
 
-export default async function Home() {
+import { getPackages } from "@/lib/databaseQueries";
 
-  const  allPackages  = await getPackages();
-  if(!allPackages) return <div>No packages found</div>
+export default async function Home() {
+  const allPackages = await getPackages();
+  if (!allPackages) return <div>No packages found</div>;
 
   return (
     <main className="px-4">

@@ -1,7 +1,6 @@
 import { getCurrentUserById } from "@/lib/currentUser";
 import { getTransactions } from "@/lib/databaseQueries";
 
-
 export default async function DashboardPage() {
   const user = await getCurrentUserById();
 

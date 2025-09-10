@@ -66,7 +66,6 @@ export async function register(formData: FormData) {
 
   // //Check if email/users exists
 
-  
   const [existingUser] = await db
     .select({ email: users.email })
     .from(users)

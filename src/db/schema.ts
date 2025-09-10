@@ -1,17 +1,19 @@
 import { sql } from "drizzle-orm";
-import { integer, pgTable, real, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
-
-
-
-
+import {
+  integer,
+  pgTable,
+  real,
+  serial,
+  text,
+  timestamp,
+  varchar,
+} from "drizzle-orm/pg-core";
 
 type Data = {
   id: string;
   title: string;
-  amount: number
+  amount: number;
 };
-
-
 
 export const users = pgTable("users", {
   id: text("id")
@@ -26,9 +28,15 @@ export const users = pgTable("users", {
     .default("user"),
   container: integer("container").default(0),
   wallet: real("wallet").default(0.0),
-  transactions: text("transactions").$type<Data[]>().default(sql`'[]'`),
-createdAt: timestamp("created_at", {withTimezone: true}).defaultNow().notNull(),
-  updatedAt: timestamp("updated_at", {withTimezone: true}).defaultNow().notNull()
+  transactions: text("transactions")
+    .$type<Data[]>()
+    .default(sql`'[]'`),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
 });
 
 export const sessions = pgTable("sessions", {
@@ -37,7 +45,9 @@ export const sessions = pgTable("sessions", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   userRole: text("role").notNull(),
-  expiration: timestamp("expire", {withTimezone: true}).defaultNow().notNull(),
+  expiration: timestamp("expire", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
 });
 
 export const packages = pgTable("packages", {
