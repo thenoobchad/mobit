@@ -18,7 +18,7 @@ export default async function InvestmentPage({
   const { id } = await params;
   const [plan] = await db.select().from(packages).where(eq(packages.id, id));
 
-  let user = await getCurrentUserById();
+  const user = await getCurrentUserById();
   if (!user) {
     revalidatePath("/");
     redirect("/");
