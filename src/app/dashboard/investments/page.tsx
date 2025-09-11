@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getPackages } from "@/lib/databaseQueries";
 
 export default async function InvestmentPage() {
-  const { allPackages } = await getPackages();
+  const allPackages = await getPackages();
   return (
     <div>
       <div className="flex gap-4">
