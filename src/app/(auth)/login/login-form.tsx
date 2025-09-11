@@ -8,7 +8,7 @@ import { InputField } from "@/components/input";
 import { SubmitButton } from "@/components/submit-button";
 
 export const LoginForm = () => {
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -34,7 +34,7 @@ export const LoginForm = () => {
     const { success, message } = await login(undefined, formData);
 
     if (!success) {
-      setMessage(message);
+      setError(message);
     }
   };
 
@@ -58,8 +58,8 @@ export const LoginForm = () => {
           id="password"
           placeholder="e.g. ********"
         />
-        {message && (
-          <p className="text-center text-sm text-red-500 italic">{message}</p>
+        {error && (
+          <p className="text-center text-sm text-red-500 italic">{error}</p>
         )}
         <SubmitButton caption="Login in" />
       </div>

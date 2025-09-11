@@ -8,16 +8,16 @@ export default async function Home() {
 
   return (
     <main className="px-4">
-      <section id="home" className="h-[900px]">
+      <section id="home" className="min-h-screen">
         Hero section
       </section>
       <section id="about" className="h-[900px]">
         About section
       </section>
-      <section id="services" className="h-[900px]">
+      <section id="services" className="min-h-screen">
         Services section
       </section>
-      <section id="investment" className="h-[900px]">
+      <section id="investment" className="min-h-screen">
         Investment section
         <div className="flex flex-wrap justify-center gap-4">
           {allPackages.map((plan) => (
@@ -44,7 +44,7 @@ export default async function Home() {
       <section id="faq" className="h-[900px]">
         Review & FQ section
       </section>
-      <section className="h-[900px]">Footer section</section>
+      <section className="min-h-screen">Footer section</section>
     </main>
   );
 }
