@@ -5,11 +5,11 @@ import {
   getTransactions,
 } from "@/lib/databaseQueries";
 
-import { data } from "../../constant/data";
+
 import { UpdateStatus } from "./_components/update-status";
 
 export default async function AdminPage() {
-  const { success, databaseUsers: allUsers } = await getDatabaseUsers();
+  const {  databaseUsers: allUsers } = await getDatabaseUsers();
 
   const notAdminUsers = allUsers.filter((user) => user.role != "admin");
 
@@ -25,7 +25,7 @@ export default async function AdminPage() {
     }
   }
 
-  const totalPackages = (await getPackages()).allPackages.length;
+  const totalPackages = (await getPackages()).length;
 
   //Total tranactions
 
