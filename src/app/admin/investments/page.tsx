@@ -4,9 +4,9 @@ import { DeletePackageBtn } from "./_components/delete-packagebtn";
 import { PackageForm } from "./package-form";
 
 export default async function InvestmentPage() {
-  const { allPackages, success } = await getPackages();
+  const allPackages = await getPackages();
 
-  if (!success) {
+  if (!allPackages) {
     return <p>No packages..</p>;
   }
 
