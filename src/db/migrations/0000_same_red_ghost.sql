@@ -7,14 +7,15 @@ CREATE TABLE "packages" (
 	"note_two" text,
 	"note_three" text,
 	"note_four" text,
-	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "sessions" (
 	"id" text PRIMARY KEY NOT NULL,
 	"user_id" text NOT NULL,
 	"role" text NOT NULL,
-	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
+	"expire" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "transactions" (
@@ -24,12 +25,13 @@ CREATE TABLE "transactions" (
 	"amount" integer NOT NULL,
 	"status" text DEFAULT 'pending',
 	"type" text,
-	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "users" (
 	"id" text PRIMARY KEY NOT NULL,
-	"name" text NOT NULL,
+	"name" varchar NOT NULL,
 	"email" text NOT NULL,
 	"password" text NOT NULL,
 	"salt" text NOT NULL,
@@ -37,7 +39,8 @@ CREATE TABLE "users" (
 	"container" integer DEFAULT 0,
 	"wallet" real DEFAULT 0,
 	"transactions" text DEFAULT '[]',
-	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp NOT NULL,
 	CONSTRAINT "users_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint

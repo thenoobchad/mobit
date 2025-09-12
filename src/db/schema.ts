@@ -1,13 +1,9 @@
 import { sql } from "drizzle-orm";
-import {
-  integer,
-  pgTable,
-  real,
-  serial,
-  text,
-  timestamp,
-  varchar,
-} from "drizzle-orm/pg-core";
+import { integer, pgTable, real, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
+
+
+
+
 
 type Data = {
   id: string;
@@ -34,9 +30,9 @@ export const users = pgTable("users", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
     .notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true })
-    .defaultNow()
-    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .notNull()
+    .$onUpdate(() => new Date()),
 });
 
 export const sessions = pgTable("sessions", {
@@ -64,9 +60,9 @@ export const packages = pgTable("packages", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
     .notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true })
-    .defaultNow()
-    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .notNull()
+    .$onUpdate(() => new Date()),
 });
 
 export const transactions = pgTable("transactions", {
@@ -87,9 +83,9 @@ export const transactions = pgTable("transactions", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
     .notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true })
-    .defaultNow()
-    .notNull(),
+  updatedAt: timestamp('updated_at')
+    .notNull()
+    .$onUpdate(() => new Date()),
 });
 
 // export const sessionsRelations = relations(sessions, ({ one }) => ({
