@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import {  IconPackage } from "@tabler/icons-react";
+
 import { logout } from "@/actions/auth";
 import { User } from "@/db/schema";
 
@@ -50,7 +52,10 @@ export const NavHeader = ({ user }: NavHeaderProp) => {
     >
       {path && (
         <div className="flex h-16 w-full items-center justify-between px-4">
-          <Link href="/">MobuiT</Link>
+          <Link href="/" className="flex gap-2">
+            <IconPackage />
+            Mobit
+          </Link>
 
           {/* Nav menu */}
           <div className="flex gap-4">

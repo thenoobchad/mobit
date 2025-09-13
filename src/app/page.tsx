@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+
+
+import { Button } from "@heroui/button";
+
 import { getPackages } from "@/lib/databaseQueries";
 
 export default async function Home() {
@@ -10,8 +14,9 @@ export default async function Home() {
     <main className="px-4">
       <section id="home" className="min-h-screen">
         Hero section
+       
       </section>
-      <section id="about" className="h-[900px]">
+      <section id="about" className="min-h-screen">
         About section
       </section>
       <section id="services" className="min-h-screen">
