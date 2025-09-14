@@ -32,7 +32,7 @@ export default function RootLayout({
         ></link>
       <body className={`antialiased`}>
         <Providers>
-            <Header />
+            {/* <Header /> */}
 
           {children}
         </Providers>

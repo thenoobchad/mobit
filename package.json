@@ -17,6 +17,7 @@
     "@libsql/client": "^0.15.10",
     "@neondatabase/serverless": "^1.0.1",
     "@tabler/icons-react": "^3.34.1",
+    
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.2",
     "drizzle-orm": "^0.44.5",

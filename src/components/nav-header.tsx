@@ -48,17 +48,17 @@ export const NavHeader = ({ user }: NavHeaderProp) => {
 
   return (
     <div
-      className={`bg-zinc-50 ${header ? "fixed top-0 flex w-full" : "flex"} ?`}
+      className={`bg-transparent ${header ? "fixed top-0 flex w-full" : "flex"} ?`}
     >
       {path && (
-        <div className="flex h-16 w-full items-center justify-between px-4">
+        <div className="flex h-22 border-b border-zinc-200 w-full items-center justify-between px-4 font-semibold">
           <Link href="/" className="flex gap-2">
             <IconPackage />
             Mobit
           </Link>
 
           {/* Nav menu */}
-          <div className="flex gap-4">
+          <div className="flex gap-4 font-semibold">
             <ul className="flex gap-4">
               <a href="#about" className="hover:underline">
                 About
