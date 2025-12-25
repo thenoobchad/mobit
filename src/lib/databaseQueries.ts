@@ -2,19 +2,30 @@ import { desc } from "drizzle-orm";
 
 
 
-import { db } from "@/db";
+
 import { notifications, packages, transactions, users } from "@/db/schema";
+import { id } from "zod/v4/locales";
 
 export const getDatabaseUsers = async () => {
-  const allUsers = await db.select().from(users);
-
-  const databaseUsers = allUsers.filter((user) => user.role == "user");
 
   return {
     success: true,
-    databaseUsers,
-  };
-};
+    data: [
+      {id: "24ewkfjhfhjdfkh",
+    username: "chidie",
+    email: "chidie@gmail.com",
+    password: "342353533",
+    salt: "sdfdsfsdf",
+    role: "admin",
+    container: null,
+    wallet: null,
+    transactions: null,
+    createdAt: new Date(),
+      updatedAt: new Date()
+    }
+    ]
+  }
+}
 
 export const getPackages = async () => {
   // const allPackages = await db?.select()?.from(packages) ;
@@ -35,17 +46,20 @@ export const getPackages = async () => {
 };
 
 export const getTransactions = async () => {
-  return await db
-    .select()
-    .from(transactions)
-    .orderBy(desc(transactions.createdAt));
+  return [
+    {
+      id: "trx123",
+      title: "Investment",
+      amount: 5000,
+      userId: "user123",
+    }
+  ]
 };
 
 //fetch notifications
 export const getNotifications = async () => {
   try {
-    const notificationsList = await db?.select()?.from(notifications)?.orderBy(desc(notifications.createdAt))
-    return notificationsList;
+   
   } catch (error) {
     console.error("Error fetching notifications:", error);
     throw new Error("Failed to fetch notifications");

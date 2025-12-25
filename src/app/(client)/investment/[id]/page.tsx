@@ -57,14 +57,8 @@ const plan = {
   createdAt: new Date(),
 };
 
-export default async function InvestmentPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const { id: investmentId } = params; // renamed to avoid "declared but never read"
+export default async function InvestmentPage() {
 
-  // Provide an explicitly-typed user so `role` is narrowed to the union
   const user: AppUser = {
     id: "32132",
     role: "admin", // now matches "admin" | "user"
