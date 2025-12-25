@@ -1,7 +1,7 @@
 import React from "react";
 
 import { logout } from "@/actions/auth";
-import { getCurrentUserById } from "@/lib/currentUser";
+
 
 const user = {
   id: "23423225552",
@@ -10,7 +10,7 @@ const user = {
 }
 
 export const UserHeader = async () => {
-  // const user = await getCurrentUserById();
+
   return (
     <header className="flex justify-between p-4">
       <div>{user?.email ?? "user"}</div>

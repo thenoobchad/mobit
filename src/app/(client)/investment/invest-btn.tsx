@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import React, { useState } from "react";
 
 import { makeInvestment } from "@/actions/user";
-import { db } from "@/db";
+
 import { Packages, User } from "@/db/schema";
 
 export const InvestBtn = ({ user, plan }: { user: User; plan: Packages }) => {

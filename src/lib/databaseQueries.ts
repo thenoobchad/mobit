@@ -5,10 +5,6 @@ import { desc } from "drizzle-orm";
 import { db } from "@/db";
 import { notifications, packages, transactions, users } from "@/db/schema";
 
-
-
-
-
 export const getDatabaseUsers = async () => {
   const allUsers = await db.select().from(users);
 

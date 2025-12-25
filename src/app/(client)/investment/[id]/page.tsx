@@ -2,23 +2,83 @@ import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { eq } from "drizzle-orm";
 
-import { db } from "@/db";
-import { packages } from "@/db/schema";
-import { getCurrentUserById } from "@/lib/currentUser";
 
 import { InvestBtn } from "../invest-btn";
+
+// cSpell:ignore ewkfjhfhjdfkh rhjfkf noteone notetwo notethree notefour erdfsefdfs
+
+type Transaction = {
+  id: string;
+  title: string;
+  amount: number;
+  userId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  status: string;
+  type: string;
+};
+
+type AppUser = {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+  salt: string;
+  role: "admin" | "user";
+  container: number | null;
+  wallet: number | null;
+  transactions: Transaction[] | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+const Data = {
+  id: "671524",
+  title: "deposit",
+  amount: 6527,
+  userId: "24ewkfjhfhjdfkh",
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  status: "pending",
+  type: "withdrawal",
+};
+
+const plan = {
+  id: "4rhjfkf",
+  title: "Basic plan",
+  description: "pro invest",
+  minInvestment: 3434,
+  noteone: "cheap",
+  notetwo: "deal in",
+  notethree: "failed",
+  notefour: "well",
+  updatedAt: new Date(),
+  createdAt: new Date(),
+};
 
 export default async function InvestmentPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) {
-  const { id } = await params;
-  const [plan] = await db.select().from(packages).where(eq(packages.id, id));
+  const { id: investmentId } = params; // renamed to avoid "declared but never read"
 
-  const user = await getCurrentUserById();
+  // Provide an explicitly-typed user so `role` is narrowed to the union
+  const user: AppUser = {
+    id: "32132",
+    role: "admin", // now matches "admin" | "user"
+    username: "josh",
+    password: "342353533",
+    email: "dean@gmail.com",
+    createdAt: new Date(),
+    salt: "2343erdfsefdfs",
+    updatedAt: new Date(),
+    container: 65,
+    wallet: 765,
+    transactions: [Data],
+  };
+
   if (!user) {
     revalidatePath("/");
     redirect("/");

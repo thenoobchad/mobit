@@ -1,14 +1,20 @@
-import { getCurrentUserById } from "@/lib/currentUser";
-import { getTransactions } from "@/lib/databaseQueries";
+
 
 export default async function DashboardPage() {
-  const user = await getCurrentUserById();
+  const user = {
+    wallet: 56,
+    id:"121314324"
+  }
 
-  const transactions = await getTransactions();
-
-  const userTransactions = transactions.filter(
-    (userTx) => userTx.userId === user?.id
-  );
+  const userTransactions = [
+    {
+      id: "2324",
+      amount: 34335,
+      type: "deposit",
+      status: "paid",
+      createdAt:"132131212"
+    },
+  ];
 
   return (
     <section className="w-full p-2">
@@ -50,7 +56,7 @@ export default async function DashboardPage() {
               <td>$ {data.amount}</td>
               <td>{data.type}</td>
               <td>{data.status}</td>
-              <td>{data.createdAt.toDateString()}</td>
+              <td>{data.createdAt}</td>
             </tr>
           ))}
         </tbody>

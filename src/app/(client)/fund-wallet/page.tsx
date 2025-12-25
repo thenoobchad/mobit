@@ -1,11 +1,13 @@
 import { redirect } from "next/navigation";
 
-import { getCurrentUser } from "@/lib/currentUser";
 
 import { PaymentSection } from "./payment-section";
 
 export default async function FundPage() {
-  const user = await getCurrentUser();
+  const user = {
+    id: "3124124",
+    role:"admin"
+  }
   if (!user) {
     redirect("/");
   }

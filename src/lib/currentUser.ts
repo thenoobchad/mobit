@@ -11,12 +11,7 @@ export const getCurrentUser = cache(async () => {
 });
 
 export const getCurrentUserById = async () => {
-  const currentUser = await getCurrentUser();
-  if (!currentUser?.id) return null;
+  
 
-  const [user] = await db
-    .select()
-    .from(users)
-    .where(eq(users.id, currentUser.id));
-  return user;
+  return null
 };

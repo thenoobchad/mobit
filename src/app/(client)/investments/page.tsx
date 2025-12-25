@@ -3,7 +3,20 @@ import Link from "next/link";
 import { getPackages } from "@/lib/databaseQueries";
 
 export default async function InvestmentPage() {
-  const allPackages = await getPackages();
+  const allPackages = [
+    {
+      id: "4rhjfkf",
+      title: "Basic plan",
+      description: "pro invest",
+      minInvestment: 3434,
+      noteone: "cheap",
+      notetwo: "deal in",
+      notethree: "failed",
+      notefour: "well",
+      updatedAt: new Date(),
+      createdAt: new Date(),
+    },
+  ];
   return (
     <div>
       <div className="flex gap-4">

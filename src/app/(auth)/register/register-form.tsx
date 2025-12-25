@@ -22,7 +22,7 @@ type RegisterDataType = {
 
 export const RegisterForm = () => {
   const [errMsg, setErrMsg] = useState<string[] | undefined>(undefined);
-  // const [state, loginAction, isPending] = useActionState(login, undefined)
+
 
   const [data, setData] = useState<RegisterDataType>({
     username: "",
@@ -36,9 +36,7 @@ export const RegisterForm = () => {
     setData((data) => ({ ...data, [name]: value }));
   };
 
-  // useEffect(() => {
-  //   console.log(data)
-  // }, [data])
+
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,15 +47,7 @@ export const RegisterForm = () => {
     formData.append("password", data.password);
 
     const res = await register(formData);
-    // if (res.errors?.username) {
-    //   setErrMsg(res.errors.username)
-    // } else if (res.errors?.password) {
-    //   setErrMsg(res.errors.password)
-    // } else if(res.errors?.email) {
-    //   setErrMsg(res.errors?.email)
-    // }
-
-    // redirect("/dashboard")
+  
   };
 
   return (
