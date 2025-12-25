@@ -88,6 +88,24 @@ export const transactions = pgTable("transactions", {
     .$onUpdate(() => new Date()),
 });
 
+
+export const notifications = pgTable("notifications", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: varchar("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  actionType: varchar("action_type", {length: 50}).notNull(),
+  status: varchar("status", { length: 20 }).default(
+    "unread"
+  ),
+  message: text("message").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+});
+
 // export const sessionsRelations = relations(sessions, ({ one }) => ({
 //   user: one(users, {
 //     fields: [sessions.userId],

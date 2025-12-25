@@ -2,9 +2,13 @@ import React from "react";
 
 import { logout } from "@/actions/auth";
 import { getCurrentUser, getCurrentUserById } from "@/lib/currentUser";
+import { AdminInbox } from "./inbox";
+import { getNotifications } from "@/lib/databaseQueries";
 
 export const Header = async () => {
   const user = await getCurrentUserById();
+
+   const data = await getNotifications()    
 
   return (
     <header className="w-full">
@@ -13,9 +17,13 @@ export const Header = async () => {
           {user?.username}
           <span className="text-[10px] text-zinc-600">{user?.email}</span>
         </p>
-        <button className="underline hover:text-red-600" onClick={logout}>
+        <div className="flex items-center gap-4">
+          <AdminInbox data={data}/>
+           <button className="underline hover:text-red-600" onClick={logout}>
           Log out
         </button>
+        </div>
+       
       </div>
     </header>
   );

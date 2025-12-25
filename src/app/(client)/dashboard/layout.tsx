@@ -3,8 +3,8 @@ import React, { ReactNode } from "react";
 
 import { getCurrentUser } from "@/lib/currentUser";
 
-import { UserHeader } from "./_components/user-header";
-import { UserSidebar } from "./_components/user-sidebar";
+import { UserHeader } from "../_components/user-header";
+import { UserSidebar } from "../_components/user-sidebar";
 
 export default async function UserLayout({
   children,

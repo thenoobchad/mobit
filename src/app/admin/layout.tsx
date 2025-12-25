@@ -14,9 +14,9 @@ export default async function AdminLayout({
 }) {
   const user = await getCurrentUser();
 
-  if (!user) {
-    redirect("/");
-  }
+  // if (!user) {
+  //   redirect("/");
+  // }
 
   return (
     <div className="flex w-full">

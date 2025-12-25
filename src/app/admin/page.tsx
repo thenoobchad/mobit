@@ -12,7 +12,7 @@ export default async function AdminPage() {
   const {  databaseUsers: allUsers } = await getDatabaseUsers();
 
   const notAdminUsers = allUsers.filter((user) => user.role != "admin");
-
+console.log(allUsers)
   //Total number of users not admin
   const totalUsers = notAdminUsers.length;
 

@@ -3,9 +3,15 @@
 import { eq } from "drizzle-orm";
 import z, { number } from "zod";
 
+
+
 import { db } from "@/db";
-import { transactions, users } from "@/db/schema";
+import { notifications, transactions, users } from "@/db/schema";
 import { getCurrentUserById } from "@/lib/currentUser";
+
+
+
+
 
 const paymentSchema = z.object({
   id: z.string(),
@@ -28,12 +34,21 @@ export async function makePayment(formData: FormData) {
   const { id, amount, mode } = data;
 
   try {
+
+    const [user] = await db.select().from(users).where(eq(users.id, id))
+    //create payment
+
+    let userTempWallet = user.container!
+    userTempWallet += Number(amount);
+
     await db
       .update(users)
       .set({
-        container: Number(amount),
+        container: userTempWallet,
       })
       .where(eq(users.id, id));
+    
+    //create transaction
 
     await db.insert(transactions).values({
       title: "deposit",
@@ -41,6 +56,18 @@ export async function makePayment(formData: FormData) {
       amount: Number(amount),
       type: "deposit",
     });
+
+    //create notification for admin
+
+    const notificationMessage = `${user.email} made a deposit of $${amount}`
+
+    await db.insert(notifications).values({
+      userId: id,
+      actionType: "deposit",
+      message: notificationMessage,
+      status:"unread"
+    })
+
     return {
       success: true,
       message: "Payment pending approval.",
@@ -62,7 +89,7 @@ const InvestmentSchema = z.object({
 });
 
 export async function makeInvestment(formData: any) {
-  console.log("AAAAAAAAAAAA");
+
   const value = formData.get("amount");
 
   console.log(typeof value);

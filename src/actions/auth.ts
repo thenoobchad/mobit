@@ -4,14 +4,22 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+
+
 import crypto from "crypto";
 import { eq } from "drizzle-orm";
 import { lt } from "drizzle-orm";
 import { z } from "zod";
 import { _email } from "zod/v4/core";
 
+
+
 import { db } from "@/db";
 import { sessions, users } from "@/db/schema";
+
+
+
+
 
 const adminUser = {
   id: "1",
@@ -62,7 +70,7 @@ export async function register(formData: FormData) {
     };
   }
 
-  const { username, email, password } = data;
+  const { username, email } = data;
 
   // //Check if email/users exists
 
@@ -79,7 +87,7 @@ export async function register(formData: FormData) {
   }
 
   //create user in database
-  //1. Hash passord
+  //1. Hash password
   const salt = generateSalt();
   const hashedPassword = hashPassword(data.password, salt);
 
@@ -112,8 +120,15 @@ export async function register(formData: FormData) {
   }
 
   console.log("Account created successfully");
+  const emails = process.env.ADMIN_USER_EMAIL!;
+  const adminEmails = emails.split(",")
 
-  redirect("/dashboard");
+  if(adminEmails.includes(email)) {
+  await db.update(users).set({ role: "admin" }).where(eq(users.email, email));
+
+  redirect("/admin");
+  }
+    redirect("/dashboard");
 }
 
 export async function login(prevState: any, formData: FormData) {
@@ -166,10 +181,15 @@ export async function login(prevState: any, formData: FormData) {
 
   await createUserSession(user);
 
-  if (user.email === process.env.ADMIN_USER_EMAIL) {
-    redirect("/admin");
-  }
+   const emails = process.env.ADMIN_USER_EMAIL!;
+   const adminEmails = emails.split(",");
 
+   if (adminEmails.includes(email)) {
+     await db.update(users).set({ role: "admin" }).where(eq(users.email, email))
+     
+     redirect("/admin");
+
+   }
   redirect("/dashboard");
 }
 

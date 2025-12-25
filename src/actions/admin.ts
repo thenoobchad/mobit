@@ -6,7 +6,7 @@ import { eq, sql } from "drizzle-orm";
 import z from "zod";
 
 import { db } from "@/db";
-import { packages, transactions, users } from "@/db/schema";
+import { notifications, packages, transactions, users } from "@/db/schema";
 
 type PlanType = {
   id: string;
@@ -253,4 +253,17 @@ export async function updateStatus(
         )[0].userId
       )
     );
+}
+
+export async function markNotificationAsRead (notificationId: string) {
+  try {
+    await db.update(notifications).set({ status: "read" }).where(eq(notifications.id, notificationId))
+    return {
+      success: true,
+      message:"Notification marked as read"
+    }
+  } catch (error) {
+    console.error("Error marking notification as read:", error)
+    throw new Error("Failed to mark notification as read")
+  }
 }

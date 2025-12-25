@@ -9,7 +9,7 @@ export default async function DashboardPage() {
   const userTransactions = transactions.filter(
     (userTx) => userTx.userId === user?.id
   );
-  console.log(userTransactions);
+
   return (
     <section className="w-full p-2">
       <div className="flex items-center justify-between">
