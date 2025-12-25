@@ -19,7 +19,26 @@ type Notifications = {
 
 type NotificationsListType = Notifications[] | []
 
-export const AdminInbox = ({ data }: { data: NotificationsListType } ) => {
+const data: NotificationsListType = [
+    {
+        id: "1",
+        userId: "u1",
+        actionType: "deposit",
+        message: "User u1 made a deposit",
+        createdAt: new Date(),
+        status: "unread"
+    },
+    {
+        id: "2",
+        userId: "u2",
+        actionType: "withdraw",
+        message: "User u2 made a withdrawal",
+        createdAt: new Date(),
+        status: "unread"
+    }
+];
+
+export const AdminInbox = ( ) => {
     const [notifications, setNotifications] = useState<Notifications[]>([])
     const [loading, setLoading] = useState(true)
     const [isOpen, setIsOpen] = useState(false)

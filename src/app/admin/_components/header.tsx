@@ -6,9 +6,7 @@ import { AdminInbox } from "./inbox";
 import { getNotifications } from "@/lib/databaseQueries";
 
 export const Header = async () => {
-  const user = await getCurrentUserById();
-
-   const data = await getNotifications()    
+  const user = {username:"Admin", email:"admin@example.com"}
 
   return (
     <header className="w-full">
@@ -18,7 +16,7 @@ export const Header = async () => {
           <span className="text-[10px] text-zinc-600">{user?.email}</span>
         </p>
         <div className="flex items-center gap-4">
-          <AdminInbox data={data}/>
+          <AdminInbox />
            <button className="underline hover:text-red-600" onClick={logout}>
           Log out
         </button>
