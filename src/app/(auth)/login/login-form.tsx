@@ -31,11 +31,7 @@ export const LoginForm = () => {
     formData.append("email", data.email);
     formData.append("password", data.password);
 
-    const { success, message } = await login(undefined, formData);
-
-    if (!success) {
-      setError(message);
-    }
+   
   };
 
   return (
