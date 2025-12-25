@@ -102,6 +102,11 @@ export async function createPackage(formData: FormData) {
  
 }
 
+
+export async function deletePackage(formData: FormData) {
+ 
+}
+
 //update user transaction status
 export async function updateStatus(
   status: "approved" | "pending" | "failed",
