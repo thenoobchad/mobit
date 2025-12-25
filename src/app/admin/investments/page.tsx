@@ -33,7 +33,7 @@ export default async function InvestmentPage() {
                 <td className="py-1">{plan.title}</td>
                 <td className="py-1">{plan.description}</td>
                 <td className="py-1">{plan.minInvestment}</td>
-                <td className="py-1">{plan.createdAt.toLocaleTimeString()}</td>
+                <td className="py-1"></td>
                 <td className="py-1">
                   <DeletePackageBtn packageId={plan.id} />
                 </td>
