@@ -55,7 +55,7 @@ export const InvestBtn = ({ user, plan }: { user: User; plan: Packages }) => {
           <div className="flex flex-col gap-4 bg-white p-6">
             <p>{error}</p>
             <div className="flex justify-between">
-              <Link href="/dashboard/fund-wallet">Fund wallet</Link>
+              <Link href="/dashboard">Fund wallet</Link>
               <button onClick={() => setError(null)}>Go Back</button>
             </div>
           </div>
