@@ -14,7 +14,6 @@ import { _email } from "zod/v4/core";
 
 
 
-import { db } from "@/db";
 import { sessions, users } from "@/db/schema";
 
 
@@ -59,138 +58,11 @@ const loginSchema = z.object({
 });
 
 export async function register(formData: FormData) {
-  const { success, data } = registerSchema.safeParse(
-    Object.fromEntries(formData)
-  );
-
-  if (!success) {
-    return {
-      success: false,
-      message: "Unable to create account.",
-    };
-  }
-
-  const { username, email } = data;
-
-  // //Check if email/users exists
-
-  const [existingUser] = await db
-    .select({ email: users.email })
-    .from(users)
-    .where(eq(users.email, email));
-
-  if (existingUser != null) {
-    return {
-      success: false,
-      message: "User already exists for this email.",
-    };
-  }
-
-  //create user in database
-  //1. Hash password
-  const salt = generateSalt();
-  const hashedPassword = hashPassword(data.password, salt);
-
-  try {
-    const user = await db
-      .insert(users)
-      .values({
-        username,
-        email,
-        password: hashedPassword,
-        salt,
-      })
-      .returning({ id: users.id, role: users.role, salt: users.salt });
-
-    const userData = user[0];
-    if (user == null) {
-      return {
-        success: false,
-        message: "Unable to create account.",
-      };
-    }
-
-    await createUserSession(userData);
-  } catch (error) {
-    console.log(error);
-    return {
-      success: false,
-      message: "Unable to create account.",
-    };
-  }
-
-  console.log("Account created successfully");
-  const emails = process.env.ADMIN_USER_EMAIL!;
-  const adminEmails = emails.split(",")
-
-  if(adminEmails.includes(email)) {
-  await db.update(users).set({ role: "admin" }).where(eq(users.email, email));
-
-  redirect("/admin");
-  }
-    redirect("/dashboard");
+  return "hi";
 }
 
 export async function login(prevState: any, formData: FormData) {
-  const { success, data, error } = loginSchema.safeParse(
-    Object.fromEntries(formData)
-  );
-
-  if (!success) {
-    return {
-      success: false,
-      message: "Invalid credentials",
-    };
-  }
-
-  const { email, password } = data;
-
-  //Check if user exists
-
-  const [user] = await db
-    .select({
-      id: users.id,
-      email: users.email,
-      salt: users.salt,
-      password: users.password,
-      role: users.role,
-    })
-    .from(users)
-    .where(eq(users.email, email));
-
-  if (!user)
-    return {
-      success: false,
-      message: "No user exist with email.",
-    };
-  //Compare password
-
-  const isCorrectPassword = await comparePasswords({
-    hashedPassword: user.password,
-    salt: user.salt,
-    password: data.password,
-  });
-
-  if (!isCorrectPassword) {
-    return {
-      success: false,
-      message: "Invalid credentials",
-    };
-  }
-  // Create a user session
-
-  await createUserSession(user);
-
-   const emails = process.env.ADMIN_USER_EMAIL!;
-   const adminEmails = emails.split(",");
-
-   if (adminEmails.includes(email)) {
-     await db.update(users).set({ role: "admin" }).where(eq(users.email, email))
-     
-     redirect("/admin");
-
-   }
-  redirect("/dashboard");
+  return "hi"
 }
 
 export async function logout() {
@@ -201,7 +73,7 @@ export async function logout() {
   if (sessionId == null) return null;
 
   //delete from database
-  await db.delete(sessions).where(eq(sessions.id, sessionId));
+  // await db.delete(sessions).where(eq(sessions.id, sessionId));
 
   //delete from session
   cookieStore.delete(COOKIE_SESSION_KEY);
@@ -210,11 +82,11 @@ export async function logout() {
 }
 
 async function fetchtUserByEmail(email: string) {
-  const [user] = await db
-    .select({ id: users.id, email: users.email })
-    .from(users)
-    .where(eq(users.email, email));
-  return user;
+  // const [user] = await db
+  //   .select({ id: users.id, email: users.email })
+  //   .from(users)
+  //   .where(eq(users.email, email));
+  return "hi";
 }
 
 //Password hasher
@@ -241,12 +113,12 @@ type UserSession = z.infer<typeof sessionSchema>;
 async function createUserSession(user: UserSession) {
   const sessionId = crypto.randomBytes(512).toString("hex").normalize();
   const expiresAt = new Date(Date.now() + SESSION_EXPIRATION_SECONDS * 1000);
-  await db.insert(sessions).values({
-    id: sessionId,
-    userId: user.id,
-    userRole: user.role,
-    expiration: expiresAt,
-  });
+  // await db.insert(sessions).values({
+  //   id: sessionId,
+  //   userId: user.id,
+  //   userRole: user.role,
+  //   expiration: expiresAt,
+  // });
 
   await setCookie(sessionId);
 }
@@ -270,15 +142,6 @@ async function setCookie(sessionId: string) {
 async function deleteExpiredSessions() {
   const currentTime = new Date();
 
-  const session = await db
-    .select({ sessions: sessions.expiration })
-    .from(sessions);
-  if (session.length > 0) {
-    await db
-      .delete(sessions)
-      .where(lt(sessions.expiration, currentTime))
-      .returning({ deletedId: sessions.id });
-  }
 }
 
 // await deleteExpiredSessions();
@@ -291,12 +154,7 @@ export async function getUserFromSession() {
 
   if (sessionId == null) return null;
 
-  const [user] = await db
-    .select({ id: sessions.userId, role: sessions.userRole })
-    .from(sessions)
-    .where(eq(sessions.id, sessionId));
 
-  return user ? user : null;
 }
 
 //compare password function
