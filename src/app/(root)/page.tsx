@@ -214,8 +214,10 @@ export default async function Home() {
           <h1>What our Users and Partners say about Us</h1>
           <p>Numbers speak volume, results are evidence of our dedicated team of hardworking individuals</p>
 
-          <div>
-            {/* <MultiCarousel/> */}
+          <div className=" w-full h-full">
+            just hear
+
+            <MultiCarousel/>
           </div>
 
 
