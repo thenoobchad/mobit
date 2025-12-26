@@ -4,16 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 
-
-import { getCurrentUserById } from "@/lib/currentUser";
-
-
-
 import { Button } from "./button";
 import { MobileMenu } from "./mobile-menu";
-
-
-
 
 
 const menu = [
