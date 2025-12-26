@@ -36,7 +36,7 @@ export default async function InvestmentPage() {
                 <li>+ {plan.notefour}</li>
               </ul>
             </div>
-            <Link href={`/investment/${plan.id}`}>Subscribe</Link>
+            <Link href="/">Subscribe</Link>
           </div>
         ))}
       </div>
