@@ -49,17 +49,7 @@ export const PackageForm = () => {
     formData.append("notefour", data.notefour);
 
     const res = await createPackage(formData);
-    if (res.success) {
-      setData({
-        title: "",
-        minInvestment: "",
-        noteone: "",
-        notetwo: "",
-        notethree: "",
-        notefour: "",
-        description: "",
-      });
-    }
+   
     setIsOpen(false);
   };
 

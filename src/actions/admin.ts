@@ -6,7 +6,6 @@ import { eq, sql } from "drizzle-orm";
 import z from "zod";
 
 
-import { notifications, packages, transactions, users } from "@/db/schema";
 
 type PlanType = {
   id: string;

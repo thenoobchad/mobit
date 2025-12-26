@@ -14,12 +14,6 @@ import { _email } from "zod/v4/core";
 
 
 
-import { sessions, users } from "@/db/schema";
-
-
-
-
-
 const adminUser = {
   id: "1",
   email: "admin@gmail.com",

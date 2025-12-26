@@ -3,15 +3,6 @@
 import { eq } from "drizzle-orm";
 import z, { number } from "zod";
 
-
-
-
-import { notifications, transactions, users } from "@/db/schema";
-
-
-
-
-
 const paymentSchema = z.object({
   id: z.string(),
   amount: z.string(),

@@ -1,10 +1,17 @@
-import { getPackages } from "@/lib/databaseQueries";
 
 import { DeletePackageBtn } from "./_components/delete-packagebtn";
 import { PackageForm } from "./package-form";
 
+const allPackages = [
+  {
+    id:"1234",
+    title:"sold",
+    description: "basic",
+    minInvestment: 4545,
+  }
+]
 export default async function InvestmentPage() {
-  const allPackages = await getPackages();
+ 
 
   if (!allPackages) {
     return <p>No packages..</p>;
