@@ -6,7 +6,18 @@ import React, { useState } from "react";
 
 import { makeInvestment } from "@/actions/user";
 
-import { Packages, User } from "@/db/schema";
+type Packages = {
+  id: string,
+  title: string;
+  minInvestment: number;
+};
+
+type User = {
+  id: string;
+  email: string;
+  name: string;
+  wallet: number;
+};
 
 export const InvestBtn = ({ user, plan }: { user: User; plan: Packages }) => {
   const userId = user.id;
