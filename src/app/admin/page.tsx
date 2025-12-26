@@ -1,18 +1,29 @@
 import { logout } from "@/actions/auth";
-import {
-  getDatabaseUsers,
-  getPackages,
-  getTransactions,
-} from "@/lib/databaseQueries";
+
 
 
 import { UpdateStatus } from "./_components/update-status";
 
 export default async function AdminPage() {
-  const {  databaseUsers: allUsers } = await getDatabaseUsers();
+  const allUsers = [
+    {
+      id: "345456",
+      email: "user@example.com",
+      name: "John Doe",
+      role: "user",
+      wallet: 100,
+    },
+    {
+      id: "345457",
+      email: "admin@example.com",
+      name: "Jane Doe",
+      role: "admin",
+      wallet: 200,
+    },
+  ];
 
   const notAdminUsers = allUsers.filter((user) => user.role != "admin");
-console.log(allUsers)
+  console.log(allUsers);
   //Total number of users not admin
   const totalUsers = notAdminUsers.length;
 
@@ -25,11 +36,35 @@ console.log(allUsers)
     }
   }
 
-  const totalPackages = (await getPackages()).length;
+  const totalPackages = 5;
 
   //Total tranactions
-
-  const allTransactions = await getTransactions();
+  
+    type TransactionStatus = "pending" | "approved" | "failed";
+    type Transaction = {
+      id: string;
+      amount: number;
+      type: string;
+      status: TransactionStatus;
+      createdAt: Date;
+    };
+  
+    const allTransactions: Transaction[] = [
+      {
+        id: "tx123456",
+        amount: 500,
+        type: "deposit",
+        status: "pending",
+        createdAt: new Date("2024-06-01"),
+      },
+      {
+        id: "tx123457",
+        amount: 300,
+        type: "withdrawal",
+        status: "approved",
+        createdAt: new Date("2024-06-02"),
+      },
+    ];
 
   return (
     <section className="w-full p-2">

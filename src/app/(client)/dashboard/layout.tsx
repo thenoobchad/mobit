@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import React, { ReactNode } from "react";
 
-import { getCurrentUser } from "@/lib/currentUser";
+
 
 import { UserHeader } from "../_components/user-header";
 import { UserSidebar } from "../_components/user-sidebar";
@@ -11,7 +11,11 @@ export default async function UserLayout({
 }: {
   children: ReactNode;
 }) {
-  const user = await getCurrentUser();
+  const user = {
+    id: "345456",
+    email: "user@example.com",
+    name: "John Doe",
+  }
 
   if (!user) {
     redirect("/");
