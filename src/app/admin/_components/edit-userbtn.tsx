@@ -5,7 +5,12 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { MdEditSquare } from "react-icons/md";
 
 import { editUser } from "@/actions/admin";
-import { User } from "@/db/schema";
+type User = {
+  id: string;
+  email: string;
+  wallet: number;
+  role: string;
+};
 
 export const EditUserbtn = (user: User) => {
   const [isOpen, setIsOpen] = useState(false);
