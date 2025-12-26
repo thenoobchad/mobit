@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getPackages } from "@/lib/databaseQueries";
+
 
 export default async function InvestmentPage() {
   const allPackages = [
@@ -16,7 +16,7 @@ export default async function InvestmentPage() {
       updatedAt: new Date(),
       createdAt: new Date(),
     },
-  ];
+  ]; 
   return (
     <div>
       <div className="flex gap-4">

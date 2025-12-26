@@ -21,13 +21,13 @@ type Transaction = {
 
 type AppUser = {
   id: string;
-  username: string;
+  name: string;
   email: string;
   password: string;
   salt: string;
   role: "admin" | "user";
   container: number | null;
-  wallet: number | null;
+  wallet: number;
   transactions: Transaction[] | null;
   createdAt: Date;
   updatedAt: Date;
@@ -62,7 +62,7 @@ export default async function InvestmentPage() {
   const user: AppUser = {
     id: "32132",
     role: "admin", // now matches "admin" | "user"
-    username: "josh",
+    name: "josh",
     password: "342353533",
     email: "dean@gmail.com",
     createdAt: new Date(),
