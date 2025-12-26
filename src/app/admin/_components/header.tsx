@@ -1,9 +1,9 @@
 import React from "react";
 
 import { logout } from "@/actions/auth";
-import { getCurrentUser, getCurrentUserById } from "@/lib/currentUser";
+  
 import { AdminInbox } from "./inbox";
-import { getNotifications } from "@/lib/databaseQueries";
+
 
 export const Header = async () => {
   const user = {username:"Admin", email:"admin@example.com"}

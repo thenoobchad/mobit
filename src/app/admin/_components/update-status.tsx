@@ -52,11 +52,7 @@ export const UpdateStatus = ({
     console.log(e.target.value as typeof data);
   };
   return (
-    // <select name="status" onChange={onChangeHandler}>
-    //   <option defaultChecked value="null">Pending</option>
-    //   <option value="success">Success</option>
-    //   <option value="failed">Failed</option>
-    // </select>
+   
     <div className="relative flex">
       <div className="flex gap-2">
         {status}
