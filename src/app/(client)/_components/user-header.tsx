@@ -14,7 +14,7 @@ export const UserHeader = async () => {
   return (
     <header className="flex justify-between p-4">
       <div>{user?.email ?? "user"}</div>
-      <button className="cursor-pointer hover:underline" onClick={logout}>
+      <button className="cursor-pointer hover:underline">
         Logout
       </button>
     </header>

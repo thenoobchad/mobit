@@ -1,17 +1,8 @@
 import type { Metadata } from "next";
 
-
-
 import { Header } from "@/components/header";
-import { Providers } from "@/components/providers";
-
-
 
 import "../globals.css";
-
-
-
-
 
 export const metadata: Metadata = {
   title: "Mobuit Inc",
@@ -24,17 +15,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-   
-      <html lang="en">
-      <body className={`antialiased font-dansans`}>
-        <Providers>
-            <Header />
+    <>
+      <div className={`font-dansans antialiased`}>
+        <Header />
 
-          {children}
-        </Providers>
-          
-        </body>
-      </html>
- 
+        {children}
+      </div>
+    </>
   );
 }

@@ -13,20 +13,20 @@ export const UserSidebar = () => {
           <Link href="/dashboard">Dashboard</Link>
         </li>
         <li className="hover:underline">
-          <Link href="/dashboard">Fund wallet</Link>
+          <Link href="/dashboard/fund-wallet">Fund wallet</Link>
         </li>
         <li className="hover:underline">
-          <Link href="/dashboard">Withdrawal</Link>
+          <Link href="/dashboard/withdrawal">Withdrawal</Link>
         </li>
         <li className="hover:underline">
-          <Link href="/dashboard">Investments</Link>
+          <Link href="/dashboard/investments">Investments</Link>
         </li>
         <li className="hover:underline">
-          <Link href="/dashboard">Transactions</Link>
+          <Link href="/dashboard/transactions">Transactions</Link>
         </li>
 
         <li className="hover:underline">
-          <Link href="/dashboard">Profile</Link>
+          <Link href="/dashboard/profile">Profile</Link>
         </li>
       </ul>
     </div>

@@ -1,8 +1,11 @@
+import { HandCoins, User, UserCircle, UserRound, Wallet } from "lucide-react";
+
 import { Button } from "@/components/button";
 import { Converter } from "@/components/converter/converter";
 import { FaqModal } from "@/components/faq-modal";
 import { SubCard } from "@/components/sub-card";
-import { faqs, footer, plans, uniqueness } from "@/constant/data";
+import { faqs, footer, plans, stat, uniqueness } from "@/constant/data";
+import { MultiCarousel } from "@/components/multi-carousel";
 
 const stats = [
   {
@@ -55,15 +58,18 @@ export default async function Home() {
       <section id="home" className="mx-auto max-w-6xl bg-white">
         <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-2 px-2">
           <div className="mb-8 flex flex-col lg:flex-row">
-            {[1, 2, 3, 4].map((_, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center rounded-lg p-6 lg:px-10"
-              >
-                <p>BITCOIN PRICE</p>
-                <h4 className="text-2xl font-semibold">67,594.79 USD</h4>
-              </div>
-            ))}
+            {stat.map((stat) => {
+
+              return (
+                <div
+                  key={stat.id}
+                  className="flex flex-col items-center rounded-lg p-6 lg:px-10"
+                >
+                  <p className="uppercase">{stat.title}</p>
+                  <h4 className="text-2xl font-semibold">{stat.figure}</h4>
+                </div>
+              )
+            })}
           </div>
 
           <h4>About Us</h4>
@@ -92,7 +98,7 @@ export default async function Home() {
       <section id="home" className="mx-auto max-w-6xl bg-white">
         <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-2">
           <h1 className="mt-20 mb-10">Investment Plans</h1>
-          <div className="flex flex-col flex-wrap justify-center gap-8 md:flex-row w-full">
+          <div className="flex w-full flex-col flex-wrap justify-center gap-8 md:flex-row">
             {plans.map((item) => (
               <div key={item.id} className="flex flex-col items-center">
                 <SubCard {...item} />
@@ -107,63 +113,91 @@ export default async function Home() {
       <section id="home" className="mx-auto max-w-6xl bg-white">
         <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-2">
           <h4 className="my-10">Why Choose Mobit</h4>
-          <p >
+          <p>
             Our goal is to provide our investors with a reliable source of high
             income. While minimizing any possible risks and offering a
             high-quality service.
           </p>
 
-          <div className="grid grid-cols-12 gap-4 my-6">
+          <div className="my-6 grid grid-cols-12 gap-4">
             {uniqueness.map((data, index) => (
-              <div key={index} className="col-span-12 sm:col-span-6 md:col-span-4 p-3 border border-zinc-200 rounded">
-                <div>{data.heading}</div>
+              <div
+                key={index}
+                className="col-span-12 rounded border border-zinc-200 p-3 sm:col-span-6 md:col-span-4"
+              >
+                <div className="mb-4 flex gap-4">
+                  <span>
+                    <data.icon />
+                  </span>
+                  {data.heading}
+                </div>
                 <div className="text-sm"> {data.desc}</div>
               </div>
             ))}
           </div>
-        </div> 
+        </div>
       </section>
-
 
       {/* HOW IT WORKD */}
 
       <section id="home" className="mx-auto max-w-6xl bg-white">
         <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-2">
           <h4>How Mobit Works</h4>
-          <p>Get involved in our tremendous platform and invest. We will utilize your capital to produce profit in your wallet automatically.</p>
-
+          <p>
+            Get involved in our tremendous platform and invest. We will utilize
+            your capital to produce profit in your wallet automatically.
+          </p>
+          <div className="grid grid-cols-12 gap-10 my-4">
+            <div
+              className={`col-span-12 flex flex-col items-center gap-4 md:col-span-6`}
+            >
+              <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-3">
+                <UserRound size={30} />
+                <span className="absolute top-1 -right-1.5 flex h-6.5 w-6.5 items-center justify-center rounded-full border-3 text-xs">
+                  01
+                </span>
+              </div>
+              <h4 className="whitespace-nowrap">Create Account</h4>
+            </div>
+            <div
+              className={`col-span-12 flex flex-col items-center gap-4 md:col-span-6`}
+            >
+              <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-3">
+                <HandCoins size={30} />
+                <span className="absolute top-1 -right-1.5 flex h-6.5 w-6.5 items-center justify-center rounded-full border-3 text-xs">
+                  03
+                </span>
+              </div>
+              <h4 className="whitespace-nowrap">Invest in Plan</h4>
+            </div>
+            <div
+              className={`col-span-12 flex flex-col items-center gap-4 md:col-span-12`}
+            >
+              <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-3">
+                <Wallet size={30} />
+                <span className="absolute top-1 -right-1.5 flex h-6.5 w-6.5 items-center justify-center rounded-full border-3 text-xs">
+                  03
+                </span>
+              </div>
+              <h4 className="whitespace-nowrap">Get Profit</h4>
+            </div>
+          </div>
           <div></div>
         </div>
       </section>
-      
 
-      <section id="stats">
-        <div className="grid grid-cols-2 items-center justify-center gap-y-8 bg-white py-8 sm:flex sm:gap-x-18">
-          {stats.map((stat) => (
-            <div
-              key={stat.number}
-              className="flex flex-col items-center gap-[5px]"
-            >
-              <h1 className="text-accent text-3xl font-bold sm:text-4xl">
-                {stat.number}
-              </h1>
-              <p className="text-[14px] text-black/70 sm:text-[18px]">
-                {stat.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-      <section id="home" className="relative">
+      {/* FREQUENTLY ASKED QUESTIONS */}
+
+        <section id="home" className="relative mx-auto max-w-6xl bg-white">
         <div className="inset-0 flex h-full w-full flex-col items-center justify-center">
-          <h4 className="text-accent">Reviews & FAQs</h4>
-          <h1 className="text-[18px] font-semibold text-black/50">
-            Learn more about Mobit
-          </h1>
-          <div className="mt-10 flex w-full flex-col gap-y-3">
+          <h4 className="text-accent text-lg">Reviews & FAQs</h4>
+          <p className="text-sm text-zinc-700 mt-4">
+            We answer some of your Frequently Asked Questions regarding our platform. if you have a query that is not answered here. Please contact us.
+          </p>
+          <div className="mt-6 flex w-full flex-col gap-y-7">
             {faqs.map((faq) => (
               <FaqModal
-                key={faq.title}
+                key={faq.id}
                 title={faq.title}
                 description={faq.description}
               />
@@ -171,6 +205,22 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+
+      {/* TESTIMONIALS */}
+      
+         <section id="home" className="relative mx-auto max-w-6xl bg-white h-screen">
+        <div className="inset-0 flex h-full w-full flex-col items-center justify-center">
+          <h1>What our Users and Partners say about Us</h1>
+          <p>Numbers speak volume, results are evidence of our dedicated team of hardworking individuals</p>
+
+          <div>
+            {/* <MultiCarousel/> */}
+          </div>
+
+
+        </div>
+        </section>
 
       <section className="w-full bg-white">
         <div className="mx-auto grid h-full max-w-[700px] grid-cols-2 items-start gap-4 px-5 py-6 sm:flex sm:flex-row sm:justify-between sm:px-3">

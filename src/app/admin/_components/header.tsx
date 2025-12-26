@@ -17,7 +17,7 @@ export const Header = async () => {
         </p>
         <div className="flex items-center gap-4">
           <AdminInbox />
-           <button className="underline hover:text-red-600" onClick={logout}>
+           <button className="underline hover:text-red-600" >
           Log out
         </button>
         </div>
