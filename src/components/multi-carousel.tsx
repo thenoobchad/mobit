@@ -25,14 +25,16 @@ export const MultiCarousel = () => {
       draggable={false}
       showDots={true}
       ssr
-      containerClass="text-white h-1/2"
+      containerClass="text-white h-[30dvh]"
       itemClass="mr-[10px] max-w-[400px] lg:max-w-full lg:mr-[20px]"
       transitionDuration={500}
       autoPlaySpeed={3000}
            autoPlay={true}
       infinite={true}
       centerMode={true}
+      partialVisible={false}
       arrows={false}
+      slidesToSlide={1}
     >
       <div className="bg-accent p-4 rounded">
         <p className="text-xs mb-2">

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/header";
 
 import "../globals.css";
+import { Notifications } from "@/components/notifications";
 
 export const metadata: Metadata = {
   title: "Mobuit Inc",
@@ -16,10 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <div className={`font-dansans antialiased`}>
+      <div className={`font-dansans antialiased `}>
         <Header />
 
         {children}
+        
       </div>
     </>
   );

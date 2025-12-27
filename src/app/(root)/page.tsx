@@ -1,11 +1,18 @@
 import { HandCoins, User, UserCircle, UserRound, Wallet } from "lucide-react";
 
+
+
 import { Button } from "@/components/button";
 import { Converter } from "@/components/converter/converter";
 import { FaqModal } from "@/components/faq-modal";
+import { MultiCarousel } from "@/components/multi-carousel";
+import { Notifications } from "@/components/notifications";
 import { SubCard } from "@/components/sub-card";
 import { faqs, footer, plans, stat, uniqueness } from "@/constant/data";
-import { MultiCarousel } from "@/components/multi-carousel";
+
+
+
+
 
 const stats = [
   {
@@ -26,15 +33,32 @@ const stats = [
   },
 ];
 
+const transactions = [
+  {
+    name: "James",
+    type: "withdrawal",
+    amount: 500,
+  },
+  {
+    name: "Andrew",
+    type: "deposit",
+    amount: 1000,
+  },
+  {
+    name: "Kevin",
+    type: "withdrawal",
+    amount: 3000,
+  },
+];
 export default async function Home() {
   const allPackages = null;
   return (
-    <main className="w-full flex-col px-5 sm:px-3">
+    <main className="w-full flex-col px-5 sm:px-3 relative">
       {/* HERO SECTION */}
-      <section id="home" className="relative my-30 mx-auto max-w-6xl">
-        <div className="flex  w-full flex-col items-center justify-center gap-6">
+      <section id="home" className="relative mx-auto my-30 max-w-6xl">
+        <div className="flex w-full flex-col items-center justify-center gap-6">
           <div className="flex flex-col gap-6 pb-8">
-            <h1 className="text-5xl leading-12 font-extrabold uppercase">
+            <h1 className="mt-10 text-5xl leading-12 font-extrabold uppercase">
               Fast & Secure <br /> Cryptocurrency Investment
             </h1>
 
@@ -59,7 +83,6 @@ export default async function Home() {
         <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-2 px-2">
           <div className="mb-8 flex flex-col lg:flex-row">
             {stat.map((stat) => {
-
               return (
                 <div
                   key={stat.id}
@@ -68,7 +91,7 @@ export default async function Home() {
                   <p className="uppercase">{stat.title}</p>
                   <h4 className="text-2xl font-semibold">{stat.figure}</h4>
                 </div>
-              )
+              );
             })}
           </div>
 
@@ -96,7 +119,7 @@ export default async function Home() {
 
       {/* INVESTMENT SECTION */}
       <section id="home" className="mx-auto my-30 max-w-6xl bg-white">
-        <div className="relative flex  w-full flex-col items-center justify-center gap-2">
+        <div className="relative flex w-full flex-col items-center justify-center gap-2">
           <h1 className="mt-20 mb-10">Investment Plans</h1>
           <div className="flex w-full flex-col flex-wrap justify-center gap-8 md:flex-row">
             {plans.map((item) => (
@@ -111,7 +134,7 @@ export default async function Home() {
       {/* GET TO KNOW US */}
 
       <section id="home" className="mx-auto my-30 max-w-6xl bg-white">
-        <div className="relative flex  w-full flex-col items-center justify-center gap-2">
+        <div className="relative flex w-full flex-col items-center justify-center gap-2">
           <h4 className="my-10">Why Choose Mobit</h4>
           <p>
             Our goal is to provide our investors with a reliable source of high
@@ -140,14 +163,14 @@ export default async function Home() {
 
       {/* HOW IT WORKD */}
 
-      <section id="home" className="mx-auto max-w-6xl my-30 bg-white">
-        <div className="relative flex  w-full flex-col items-center justify-center gap-2">
+      <section id="home" className="mx-auto my-30 max-w-6xl bg-white">
+        <div className="relative flex w-full flex-col items-center justify-center gap-2">
           <h4>How Mobit Works</h4>
           <p>
             Get involved in our tremendous platform and invest. We will utilize
             your capital to produce profit in your wallet automatically.
           </p>
-          <div className="grid grid-cols-12 gap-10 my-4">
+          <div className="my-4 grid grid-cols-12 gap-10">
             <div
               className={`col-span-12 flex flex-col items-center gap-4 md:col-span-6`}
             >
@@ -188,11 +211,13 @@ export default async function Home() {
 
       {/* FREQUENTLY ASKED QUESTIONS */}
 
-        <section id="home" className="relative mx-auto max-w-6xl bg-white">
+      <section id="home" className="relative mx-auto max-w-6xl bg-white">
         <div className="inset-0 flex h-full w-full flex-col items-center justify-center">
           <h4 className="text-accent text-lg">Reviews & FAQs</h4>
-          <p className="text-sm text-zinc-700 mt-4">
-            We answer some of your Frequently Asked Questions regarding our platform. if you have a query that is not answered here. Please contact us.
+          <p className="mt-4 text-sm text-zinc-700">
+            We answer some of your Frequently Asked Questions regarding our
+            platform. if you have a query that is not answered here. Please
+            contact us.
           </p>
           <div className="mt-6 flex w-full flex-col gap-y-7">
             {faqs.map((faq) => (
@@ -206,21 +231,31 @@ export default async function Home() {
         </div>
       </section>
 
-
       {/* TESTIMONIALS */}
-      
-         <section id="home" className="relative mx-auto max-w-6xl bg-white my-30 ">
-        <div className=" flex h-full w-full flex-col items-center justify-center">
+
+      <section id="home" className="relative mx-auto my-30 max-w-6xl bg-white">
+        <div className="flex h-full w-full flex-col items-center justify-center">
           <h1>What our Users and Partners say about Us</h1>
-          <p>Numbers speak volume, results are evidence of our dedicated team of hardworking individuals</p>
+          <p>
+            Numbers speak volume, results are evidence of our dedicated team of
+            hardworking individuals
+          </p>
 
-          <div className=" w-full h-full overflow-hidden">
-            just hear
-
-            <MultiCarousel/>
+          <div className="my-10 h-full w-full overflow-hidden">
+            <MultiCarousel />
           </div>
+        </div>
+      </section>
 
+      {/* OUR TEAM */}
 
+       <section id="home" className="relative mx-auto my-30 max-w-6xl bg-white">
+        <div className="flex h-full w-full flex-col items-center justify-center">
+           <h1>Our Team</h1>
+          <p>
+            Numbers speak volume, results are evidence of our dedicated team of
+            hardworking individuals
+          </p>
         </div>
         </section>
 
@@ -262,6 +297,7 @@ export default async function Home() {
           ))}
         </div>
       </section>
+      <Notifications transactions={transactions} />
     </main>
   );
 }
