@@ -31,8 +31,8 @@ export default async function Home() {
   return (
     <main className="w-full flex-col px-5 sm:px-3">
       {/* HERO SECTION */}
-      <section id="home" className="relative mx-auto max-w-6xl">
-        <div className="flex h-screen w-full flex-col items-center justify-center gap-6">
+      <section id="home" className="relative my-30 mx-auto max-w-6xl">
+        <div className="flex  w-full flex-col items-center justify-center gap-6">
           <div className="flex flex-col gap-6 pb-8">
             <h1 className="text-5xl leading-12 font-extrabold uppercase">
               Fast & Secure <br /> Cryptocurrency Investment
@@ -95,8 +95,8 @@ export default async function Home() {
       </section>
 
       {/* INVESTMENT SECTION */}
-      <section id="home" className="mx-auto max-w-6xl bg-white">
-        <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-2">
+      <section id="home" className="mx-auto my-30 max-w-6xl bg-white">
+        <div className="relative flex  w-full flex-col items-center justify-center gap-2">
           <h1 className="mt-20 mb-10">Investment Plans</h1>
           <div className="flex w-full flex-col flex-wrap justify-center gap-8 md:flex-row">
             {plans.map((item) => (
@@ -110,8 +110,8 @@ export default async function Home() {
 
       {/* GET TO KNOW US */}
 
-      <section id="home" className="mx-auto max-w-6xl bg-white">
-        <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-2">
+      <section id="home" className="mx-auto my-30 max-w-6xl bg-white">
+        <div className="relative flex  w-full flex-col items-center justify-center gap-2">
           <h4 className="my-10">Why Choose Mobit</h4>
           <p>
             Our goal is to provide our investors with a reliable source of high
@@ -140,8 +140,8 @@ export default async function Home() {
 
       {/* HOW IT WORKD */}
 
-      <section id="home" className="mx-auto max-w-6xl bg-white">
-        <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-2">
+      <section id="home" className="mx-auto max-w-6xl my-30 bg-white">
+        <div className="relative flex  w-full flex-col items-center justify-center gap-2">
           <h4>How Mobit Works</h4>
           <p>
             Get involved in our tremendous platform and invest. We will utilize
@@ -209,12 +209,12 @@ export default async function Home() {
 
       {/* TESTIMONIALS */}
       
-         <section id="home" className="relative mx-auto max-w-6xl bg-white h-screen">
-        <div className="inset-0 flex h-full w-full flex-col items-center justify-center">
+         <section id="home" className="relative mx-auto max-w-6xl bg-white my-30 ">
+        <div className=" flex h-full w-full flex-col items-center justify-center">
           <h1>What our Users and Partners say about Us</h1>
           <p>Numbers speak volume, results are evidence of our dedicated team of hardworking individuals</p>
 
-          <div className=" w-full h-full">
+          <div className=" w-full h-full overflow-hidden">
             just hear
 
             <MultiCarousel/>
