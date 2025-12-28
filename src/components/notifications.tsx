@@ -54,7 +54,7 @@ export const Notifications = ({
   return (
     <div>
       {currentNotif && <div
-        className={`${isVisible ? "-translate-y-24" : ""} fixed -bottom-20 left-4 flex w-[200px] items-center justify-center  bg-blue-600 text-white p-2 outline outline-zinc-300 transition-all! delay-200! z-900`}
+        className={`${isVisible ? "-translate-y-24" : ""} fixed -bottom-20 left-4 flex w-[200px] items-center justify-center  bg-blue-800 text-white p-2 outline outline-blue-900 transition-all! delay-200! z-900`}
       >
         <p className="text-xs font-semibold">
           <span>{currentNotif.name}</span> just made a {currentNotif.type} of <span className="font-extrabold ">${currentNotif.amount}</span> just now.

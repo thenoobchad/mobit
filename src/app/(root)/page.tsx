@@ -1,4 +1,4 @@
-import { HandCoins, User, UserCircle, UserRound, Wallet } from "lucide-react";
+import { HandCoins, Mail, User, UserCircle, UserRound, Wallet } from "lucide-react";
 
 
 
@@ -103,13 +103,13 @@ export default async function Home() {
           </div>
 
           <h4>About Us</h4>
-          <p>
+          <p className="text-justify">
             We are an international financial company engaged in investment
             activities, which are related to trading on financial markets and
             cryptocurrency exchanges performed by qualified professional
             traders.
           </p>
-          <p>
+          <p className="text-justify">
             Our goal is to provide our investors with a reliable source of
             income, while minimizing any possible risks and offer a high quality
             service, allowing us to automate and simplify the relations between
@@ -276,6 +276,12 @@ export default async function Home() {
           </p>
 
           <Button title="Join Us" />
+          <div className="shadow-xs bg-white p-4 min-w-[400px]">
+            <h1 className="py-3 text-center">Subscribe Our Newsletter</h1>
+            <div className="flex outline outline-accent justify-between">
+              <input type="text" placeholder="Email address" className="px-4 outline-none"/><button className="p-2 px-3 bg-accent"><Mail className="text-white"/></button>
+            </div>
+          </div>
         </div>
         </section>
       
