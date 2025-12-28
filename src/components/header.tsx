@@ -46,7 +46,7 @@ export const Header = () => {
   
   
   return (
-    <header className="bg-white top-0 z-20 h-21 border-b border-zinc-300 sticky">
+    <header className=" top-0 bg-white z-90 h-21 border-b border-zinc-300 sticky backdrop-blur-3xl">
       <div className="flex items-center justify-between max-w-5xl mx-auto px-5 sm:px-3 py-3 mt-2 w-full font-mono">
         {/* Logo */}
         <Link href="/" className="text-lg font-bold text-zinc-800 p-2 tracking-wider ">MOBIT.IO</Link>

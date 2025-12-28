@@ -60,16 +60,24 @@ const transactions = [
 export default async function Home() {
   const allPackages = null;
   return (
-    <main className="w-full flex-col px-5 sm:px-3 relative">
+    <main className="w-full flex flex-col  relative">
+    
       {/* HERO SECTION */}
-      <section id="home" className="relative mx-auto my-30 max-w-6xl">
-        <div className="flex w-full flex-col items-center justify-center gap-6">
-          <div className="flex flex-col gap-6 pb-8">
-            <h1 className="mt-10 text-5xl leading-12 font-extrabold uppercase">
+      <section style={{
+              backgroundImage: "url('/images/backg.jpeg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+      }} id="home" className=" mx-auto min-w-screen h-screen relative ">
+        <div className="absolute inset-0 z-0 bg-black/70">
+          <div className="h-full w-full bg-black opacity-30" />
+        </div>
+        <div className="flex w-full flex-col items-center justify-center gap-6 relative z-20 p-4">
+          <div className="flex flex-col gap-6 mb-6">
+            <h1 className="mt-18 text-5xl leading-12 font-extrabold uppercase text-zinc-50">
               Fast & Secure <br /> Cryptocurrency Investment
             </h1>
 
-            <p className="font-[14px] text-black/50">
+            <p className=" text-zinc-100 font-semibold">
               A cutting-edge platform to buy and sell cryptocurrency wiyh
               top-tier security and lightning-fast transactions.
             </p>
@@ -278,7 +286,7 @@ export default async function Home() {
           <Button title="Join Us" />
           <div className="shadow-xs bg-white p-4 min-w-[400px]">
             <h1 className="py-3 text-center">Subscribe Our Newsletter</h1>
-            <div className="flex outline outline-accent justify-between">
+            <div className="flex outline outline-accent justify-between rounded">
               <input type="text" placeholder="Email address" className="px-4 outline-none"/><button className="p-2 px-3 bg-accent"><Mail className="text-white"/></button>
             </div>
           </div>
