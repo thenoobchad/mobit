@@ -14,27 +14,27 @@ import { faqs, footer, plans, stat, uniqueness } from "@/constant/data";
 
 
 
-const stats = [
-  {
-    number: "6M+",
-    desc: "Active Users",
-  },
-  {
-    number: "24/7",
-    desc: "User Support",
-  },
-  {
-    number: "160+",
-    desc: "Countries",
-  },
-  {
-    number: "$22B+",
-    desc: "Trade Volume",
-  },
-];
-
-
 const transactions = [
+  {
+    name: "Frank Dalis",
+    type: "withdrawa",
+    amount: 8000,
+  },
+  {
+    name: "Anita75",
+    type: "deposit",
+    amount: 1000,
+  },
+  {
+    name: "Richie",
+    type: "deposit",
+    amount: 5000,
+  },
+  {
+    name: "Stan65",
+    type: "withdrawal",
+    amount: 10500,
+  },
   {
     name: "Mariam",
     type: "deposit",

@@ -3,9 +3,6 @@
 import { useEffect, useState } from "react";
 
 
-
-
-
 type TransactionsType = DataType[];
 
 type DataType = {
@@ -30,7 +27,7 @@ export const Notifications = ({
     const showNotification = () => {  
       const randomIndex = Math.floor(Math.random() * transactions.length)
 
-      console.log(randomIndex)
+    
       setCurrentNotif(transactions[randomIndex]);
       setIsVisible(true);
 
@@ -40,8 +37,8 @@ export const Notifications = ({
         timeoutId = setTimeout(() => {
           setCurrentNotif(null);
 
-          const delay = Math.random() * (5 - 2) + 2;
-          timeoutId = setTimeout(showNotification, delay * 1000);
+          const delay = Math.random() * 4000 + 1000;
+          timeoutId = setTimeout(showNotification, delay );
         }, 500);
       }, 2000);
     };
@@ -57,10 +54,10 @@ export const Notifications = ({
   return (
     <div>
       {currentNotif && <div
-        className={`${isVisible ? "-translate-y-24" : ""} fixed -bottom-20 left-4 flex w-[200px] items-center justify-center rounded bg-white p-4 outline outline-zinc-300 transition-all! delay-200!`}
+        className={`${isVisible ? "-translate-y-24" : ""} fixed -bottom-20 left-4 flex w-[200px] items-center justify-center  bg-blue-600 text-white p-2 outline outline-zinc-300 transition-all! delay-200! z-900`}
       >
-        <p className="text-sm">
-          {currentNotif.name} just made a {currentNotif.type} of ${currentNotif.amount} now
+        <p className="text-xs font-semibold">
+          <span>{currentNotif.name}</span> just made a {currentNotif.type} of <span className="font-extrabold ">${currentNotif.amount}</span> just now.
         </p>
       </div>}
     </div>
