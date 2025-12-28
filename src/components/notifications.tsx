@@ -6,55 +6,63 @@ import { useEffect, useState } from "react";
 
 
 
-type TransactionsType =  DataType[]
+type TransactionsType = DataType[];
 
-  type DataType = {
-    name: string;
-    type: string;
-    amount: number;
-  };
+type DataType = {
+  name: string;
+  type: string;
+  amount: number;
+};
 
+export const Notifications = ({
+  transactions,
+}: {
+  transactions: TransactionsType;
+}) => {
+  const [currentNotif, setCurrentNotif] = useState<DataType | null>(null);
+ 
+  const [isVisible, setIsVisible] = useState(false);
 
-export const Notifications = ({transactions}:{transactions: TransactionsType}) => {
-    const [isActive, setIsActive] = useState<DataType | null>(null);
-    const [currentIndex, setCurrentIndex] = useState(0)
+  useEffect(() => {
+    if (transactions.length === 0) return;
+    let timeoutId: any;
 
+    const showNotification = () => {  
+      const randomIndex = Math.floor(Math.random() * transactions.length)
 
-    useEffect(() => {
-        if(transactions.length === 0) return
-        let timeoutId: any
+      console.log(randomIndex)
+      setCurrentNotif(transactions[randomIndex]);
+      setIsVisible(true);
 
-        const showNotification = () => {
-            setIsActive(transactions[currentIndex])
+      timeoutId = setTimeout(() => {
+        setIsVisible(false);
 
-            timeoutId = setTimeout(() => {
-              setIsActive(null)
-              
-              setCurrentIndex((prev) => (prev + 1) % transactions.length)
-             
+        timeoutId = setTimeout(() => {
+          setCurrentNotif(null);
 
-              const randomDelay = Math.random() * (5 - 2) + 2
-              
-              timeoutId = setTimeout(showNotification, randomDelay * 2000)
-              
-              
-            }, 2000)
-        }
+          const delay = Math.random() * (5 - 2) + 2;
+          timeoutId = setTimeout(showNotification, delay * 1000);
+        }, 500);
+      }, 2000);
+    };
 
-        
-        const initialDelay = Math.random() * (5 - 2) + 2;
-        timeoutId = setTimeout(showNotification, initialDelay * 1000)
+    const initialDelay = Math.floor(Math.random() * 4000) + 1000;
+    timeoutId = setTimeout(showNotification, initialDelay)
 
-        return () => clearTimeout(timeoutId)
-    }, [transactions])
-  
+    return () => clearTimeout(timeoutId);
+  }, [transactions]);
+
   if (transactions.length === 0) return null;
-  const {name, amount, type} = transactions[currentIndex]
+  
   return (
     <div>
-          <div className={`${isActive ? "-translate-y-24":""} fixed -bottom-20 left-4 flex  w-[200px] items-center transition-all! delay-200! justify-center bg-white outline p-4 rounded outline-zinc-300`}>
-        <p className="text-sm">{name} just made a {type} of ${amount} now</p>
-          </div>
+      {currentNotif && <div
+        className={`${isVisible ? "-translate-y-24" : ""} fixed -bottom-20 left-4 flex w-[200px] items-center justify-center rounded bg-white p-4 outline outline-zinc-300 transition-all! delay-200!`}
+      >
+        <p className="text-sm">
+          {currentNotif.name} just made a {currentNotif.type} of ${currentNotif.amount} now
+        </p>
+      </div>}
     </div>
   );
 };

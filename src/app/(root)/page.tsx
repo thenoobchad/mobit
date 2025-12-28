@@ -33,7 +33,13 @@ const stats = [
   },
 ];
 
+
 const transactions = [
+  {
+    name: "Mariam",
+    type: "deposit",
+    amount: 2500,
+  },
   {
     name: "James",
     type: "withdrawal",
