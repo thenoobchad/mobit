@@ -71,8 +71,8 @@ export default async function Home() {
         <div className="absolute inset-0 z-0 bg-black/70">
           <div className="h-full w-full bg-black opacity-30" />
         </div>
-        <div className="flex w-full flex-col items-center justify-center gap-6 relative z-20 p-4">
-          <div className="flex flex-col gap-6 mb-6">
+        <div className="flex w-full flex-col items-center justify-center gap-6 relative z-20 p-4 h-full">
+          <div className="flex flex-col gap-6 mb-6 ">
             <h1 className="mt-18 text-5xl leading-12 font-extrabold uppercase text-zinc-50">
               Fast & Secure <br /> Cryptocurrency Investment
             </h1>
