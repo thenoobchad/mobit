@@ -9,6 +9,7 @@ import { MultiCarousel } from "@/components/multi-carousel";
 import { Notifications } from "@/components/notifications";
 import { SubCard } from "@/components/sub-card";
 import { faqs, footer, plans, stat, uniqueness } from "@/constant/data";
+import { Footer } from "@/components/footer";
 
 
 
@@ -167,7 +168,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* HOW IT WORKD */}
+      {/* HOW IT WORKS */}
 
       <section id="home" className="mx-auto my-30 max-w-6xl bg-white">
         <div className="relative flex w-full flex-col items-center justify-center gap-2">
@@ -180,35 +181,35 @@ export default async function Home() {
             <div
               className={`col-span-12 flex flex-col items-center gap-4 md:col-span-6`}
             >
-              <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-3">
-                <UserRound size={30} />
-                <span className="absolute top-1 -right-1.5 flex h-6.5 w-6.5 items-center justify-center rounded-full border-3 text-xs">
+              <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-3 border-accent">
+                <UserRound size={30} className="text-accent" />
+                <span className="absolute top-1 -right-1.5 flex h-6.5 w-6.5 items-center justify-center rounded-full border-3 text-xs bg-white border-accent">
                   01
                 </span>
               </div>
-              <h4 className="whitespace-nowrap">Create Account</h4>
+              <h4 className="whitespace-nowrap text-accent font-semibold">Create Account</h4>
             </div>
             <div
               className={`col-span-12 flex flex-col items-center gap-4 md:col-span-6`}
             >
-              <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-3">
-                <HandCoins size={30} />
-                <span className="absolute top-1 -right-1.5 flex h-6.5 w-6.5 items-center justify-center rounded-full border-3 text-xs">
+              <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-3 border-accent">
+                <HandCoins size={30} className="text-accent" />
+                <span className="absolute top-1 -right-1.5 flex h-6.5 w-6.5 items-center justify-center rounded-full border-3 text-xs bg-white border-accent">
                   03
                 </span>
               </div>
-              <h4 className="whitespace-nowrap">Invest in Plan</h4>
+              <h4 className="whitespace-nowrap text-accent font-semibold">Invest in Plan</h4>
             </div>
             <div
               className={`col-span-12 flex flex-col items-center gap-4 md:col-span-12`}
             >
-              <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-3">
-                <Wallet size={30} />
-                <span className="absolute top-1 -right-1.5 flex h-6.5 w-6.5 items-center justify-center rounded-full border-3 text-xs">
+              <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-3 border-accent">
+                <Wallet size={30} className="text-accent" />
+                <span className="absolute top-1 -right-1.5 flex h-6.5 w-6.5 items-center justify-center rounded-full border-3 text-xs bg-white border-accent">
                   03
                 </span>
               </div>
-              <h4 className="whitespace-nowrap">Get Profit</h4>
+              <h4 className="whitespace-nowrap text-accent font-semibold">Get Profit</h4>
             </div>
           </div>
           <div></div>
@@ -263,46 +264,21 @@ export default async function Home() {
             hardworking individuals
           </p>
         </div>
-        </section>
-
-      <section className="w-full bg-white">
-        <div className="mx-auto grid h-full max-w-[700px] grid-cols-2 items-start gap-4 px-5 py-6 sm:flex sm:flex-row sm:justify-between sm:px-3">
-          {footer.map((item) => (
-            <div key={item.head} className="flex flex-col gap-2">
-              <h1>{item.head}</h1>
-
-              {item.list ? (
-                <ul>
-                  {item.list.map((link) => {
-                    if ("icon" in link) {
-                      return (
-                        <li
-                          key={link.link}
-                          className="hover:text-accent flex cursor-pointer items-center gap-2 text-[14px] text-black/70"
-                        >
-                          <span aria-hidden>{link.icon}</span>
-                        </li>
-                      );
-                    }
-
-                    // now TypeScript knows `link` has `title`
-                    return (
-                      <li
-                        key={link.link}
-                        className="hover:text-accent cursor-pointer text-[14px] text-black/70"
-                      >
-                        {link.title}
-                      </li>
-                    );
-                  })}
-                </ul>
-              ) : (
-                <p className="text-[14px] text-black/70">{item.description}</p>
-              )}
-            </div>
-          ))}
-        </div>
       </section>
+      
+      {/* NEWS LETTER */}
+
+       <section id="home" className="relative mx-auto my-30 max-w-6xl bg-white">
+        <div className="flex h-full w-full flex-col items-center justify-center">
+           <h1>Get Started Today with Us</h1>
+          <p className="my-4">
+           This is a Revolutionary Investment Platform for maximum profit. We guarantee the fastest and most exciting returns on your investment, but we also guarantee the security of your investment.
+          </p>
+
+          <Button title="Join Us" />
+        </div>
+        </section>
+      
       <Notifications transactions={transactions} />
     </main>
   );

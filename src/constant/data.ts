@@ -58,7 +58,7 @@ export const faqs = [
 
 export const footer = [
   {
-    head: "Logo",
+    head: "Mobit Inc",
   
     description: "The Most trusted crypto platform"
   },
